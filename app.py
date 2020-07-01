@@ -4,7 +4,7 @@ import requests
 
 app=Flask(__name__)
 
-with open('/static/currency.json','r') as fhand:
+with open('static/currency.json','r') as fhand:
     symbols=json.load(fhand)  #file of all the currency
 
 base_url="http://data.fixer.io/api/latest?"      #URL of API provider
@@ -27,3 +27,5 @@ def index():
     except:
         result=''
     return render_template("index.html", symbols=symbols, result=result)
+
+if __name__=="__main__"
