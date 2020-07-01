@@ -28,4 +28,5 @@ def index():
         result=''
     return render_template("index.html", symbols=symbols, result=result)
 
-if __name__=="__main__"
+if __name__=="__main__":
+    app.run()
