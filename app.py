@@ -26,18 +26,6 @@ def index():
             result = '1 ' + from_symbol + " = " + str(rate) + " " + to_symbol
     except:
         result=''
-    try:
-        res= requests.get(url)
-        if res.status_code != 200:
-            result='ERROR: API request unsuccessful'
-        else:
-            from_symbol = str(request.form.get("from_symbol"))
-            to_symbol = str(request.form.get("to_symbol"))
-            data = res.json()
-            rate = (data['rates'][to_symbol])/(data['rates'][from_symbol])
-            result = '1 ' + from_symbol + " = " + str(rate) + " " + to_symbol
-    except:
-        result=''
     return render_template("index.html", symbols=symbols, result=result)
 
 if __name__=="__main__":
