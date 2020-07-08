@@ -15,13 +15,25 @@ url=base_url+"access_key="+access_key            #Complete url of API
 @app.route("/", methods=["GET","POST"])
 def index():
     try:
+        from_symbol = str(request.form.get("from_symbol"))
+        to_symbol = str(request.form.get("to_symbol"))
         res= requests.get(url)
         if res.status_code != 200:
             result='ERROR: API request unsuccessful'
         else:
             data = res.json()
+            rate = (data['rates'][to_symbol])/(data['rates'][from_symbol])
+            result = '1 ' + from_symbol + " = " + str(rate) + " " + to_symbol
+    except:
+        result=''
+    try:
+        res= requests.get(url)
+        if res.status_code != 200:
+            result='ERROR: API request unsuccessful'
+        else:
             from_symbol = str(request.form.get("from_symbol"))
             to_symbol = str(request.form.get("to_symbol"))
+            data = res.json()
             rate = (data['rates'][to_symbol])/(data['rates'][from_symbol])
             result = '1 ' + from_symbol + " = " + str(rate) + " " + to_symbol
     except:
