@@ -17,6 +17,8 @@ def index():
     try:
         from_symbol = str(request.form.get("from_symbol"))
         to_symbol = str(request.form.get("to_symbol"))
+        if(from_symbol==str(None)):
+            raise Exception("ValueError")
         res= requests.get(url)
         if res.status_code != 200:
             result='ERROR: API request unsuccessful'
